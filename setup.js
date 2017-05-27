@@ -4,12 +4,12 @@
 
 import React, {Component} from 'react';
 
-import ListViewStudy from "./study/ListViewStudy";
+import MovieList from "./js/MovieList";
 
 export default class setup extends Component {
     render() {
         return (
-            <ListViewStudy/>
+            <MovieList/>
         );
     }
 }

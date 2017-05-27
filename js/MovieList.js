@@ -17,7 +17,7 @@ import {
 import MovieItem from "../js/MovieItem";
 
 const REQUEST_URL = "http://api.douban.com/v2/movie/top250?start=0&count=15";
-export default class ListViewStudy extends Component {
+export default class MovieList extends Component {
 
     constructor(props) {
         super(props)
@@ -48,26 +48,7 @@ export default class ListViewStudy extends Component {
     }
 
 
-    renderMovieItem(movie) {
-        return (
-            <View style={styles.movieItem}>
-                <Image
-                    style={styles.movieImage}
-                    source={{uri: movie.images.large}}/>
-                <View style={{flexDirection: 'column', marginLeft: 10}}>
-                    <Text style={styles.movieTitle}>{movie.title}</Text>
-                    <Text style={{fontSize: 16, marginTop: 8, color: '#212121'}}>{movie.original_title}<Text
-                        style={{color: '#888888'}}>({movie.year})</Text></Text>
-                    <Text style={{fontSize: 14, marginTop: 2, color: '#212121'}}>{movie.directors[0].name}</Text>
-                    <Text style={{fontSize: 12, marginTop: 2, color: '#212121'}}>类型: {movie.genres[0]}</Text>
-                    <Text style={{fontSize: 12, marginTop: 2, color: '#212121'}}>评分: <Text
-                        style={{color: '#673AB7'}}>{movie.rating.average}</Text></Text>
 
-                </View>
-
-            </View>
-        )
-    }
 
     render() {
         if (this.state.isLoadFinish === true) {
@@ -80,11 +61,7 @@ export default class ListViewStudy extends Component {
             );
         } else {
             return (
-                <View style={{
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    flex: 1
-                }}>
+                <View style={styles.container}>
                     <ActivityIndicator
                         style={{
                             alignSelf: 'center'
@@ -99,38 +76,14 @@ export default class ListViewStudy extends Component {
 }
 
 let styles = StyleSheet.create({
-    movieTitle: {
-        fontSize: 18,
-        color: '#6435c9',
 
-    },
-    movieImage: {
-        width: 108,
-        height: 168,
-    },
-
-    movieItem: {
-        flexDirection: 'row',
-        flex: 1,
-        paddingVertical: 8,
-        paddingHorizontal: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#dddddd'
-
-    },
-    itemText: {
-        fontSize: 33,
-        fontFamily: 'Helvetiva Neue',
-        fontWeight: '200',
-        color: '#6435c9',
-        padding: 16,
-    },
 
     container: {
         // justifyContent: 'flex-start',
         // alignItems: 'flex-end',
         backgroundColor: '#eae7ff',
         flexDirection: 'column',
+        justifyContent: 'center',
         flex: 1,
     }
 
