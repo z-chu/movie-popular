@@ -18,8 +18,8 @@ import {
 } from 'react-native';
 
 
-const REQUEST_URL = "http://api.douban.com/v2/movie/top250?start=0&count=15";
-export default class MovieList extends Component {
+const REQUEST_URL = "http://api.douban.com/v2/movie/us_box";
+export default class Top250 extends Component {
 
     constructor(props) {
         super(props)
@@ -53,23 +53,23 @@ export default class MovieList extends Component {
         return (
             <TouchableNativeFeedback
                 onPress={() => {
-                    ToastAndroid.showWithGravity(movie.title, ToastAndroid.SHORT, ToastAndroid.CENTER)
+                    ToastAndroid.showWithGravity(movie.subject.title, ToastAndroid.SHORT, ToastAndroid.CENTER)
                 }}
                 background={TouchableNativeFeedback.SelectableBackground()}>
                 <View style={styles.movieItem}>
                     <Image
                         style={styles.movieImage}
-                        source={{uri: movie.images.large}}/>
+                        source={{uri: movie.subject.images.large}}/>
                     <View style={{flexDirection: 'column', marginLeft: 10}}>
-                        <Text style={styles.movieTitle}>{movie.title}</Text>
+                        <Text style={styles.movieTitle}>{movie.subject.title}</Text>
                         <Text
                             style={[styles.movieContentText, {fontSize: 18, marginTop: 8}]}>
-                            {movie.original_title}<Text style={{color: '#888888'}}>({movie.year})</Text>
+                            {movie.subject.original_title}<Text style={{color: '#888888'}}>({movie.subject.year})</Text>
                         </Text>
-                        <Text style={[styles.movieContentText, {fontSize: 14}]}>{movie.directors[0].name}</Text>
-                        <Text style={styles.movieContentText}>类型: {movie.genres[0]}</Text>
+                        <Text style={[styles.movieContentText, {fontSize: 14}]}>{movie.subject.directors[0].name}</Text>
+                        <Text style={styles.movieContentText}>类型: {movie.subject.genres[0]}</Text>
                         <Text style={styles.movieContentText}>
-                            评分: <Text style={{color: '#673AB7'}}>{movie.rating.average}</Text>
+                            评分: <Text style={{color: '#673AB7'}}>{movie.subject.rating.average}</Text>
                         </Text>
 
                     </View>
@@ -117,7 +117,7 @@ let styles = StyleSheet.create({
     },
     movieTitle: {
         fontSize: 18,
-        color: '#6435c9',
+        color: '#9c27b0',
 
     },
     movieContentText: {
